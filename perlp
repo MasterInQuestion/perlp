@@ -1,0 +1,4 @@
+	PERLIO=':raw:utf8' exec '/usr/bin/perl' -p \
+	-e 'BEGIN { $^H |= 0x02a00000; $^H{reflags_charset} = 4; $/ = undef(); }' \
+	-e 'BEGIN { $x0 = ${^RE_DEBUG_FLAGS}; ${^RE_DEBUG_FLAGS} = 0; }; BEGIN { if ( ! defined( $^I ) ) { foreach ( @ARGV ) { s/(*:0)(?=^\.{0,2}(?:\/|\z)(*:1))?/ "< ".( $REGMARK eq "1" ? "" : ".\/" ); /e; $_ .= "\x00"; }; }; }; BEGIN { ${^RE_DEBUG_FLAGS} = $x0; };' \
+	-e "$@";
